@@ -29,13 +29,34 @@ class Order { // Create Order class // Properties for order class
         this.quantity = quantity
         this.totalPrice = product.price * quantity; // Calculate total price
         this.product.updateStock(quantity); // Update stock quantity when creating a order 
-    }
+    };
     getOrderDetails() {
         return `Order ID: ${this.orderID}, Product: ${this.product.name}, Quantity: ${this.quantity}, Total Price: $${this.totalPrice}` // Method to return string of details 
-    }
+    };
 }
 
 const order1 = new Order(501, prod1, 2);
 console.log(order1.getOrderDetails()); // Expected output: Order ID: 501, Product: Laptop, Quantity: 2, Total Price: $2400
 console.log(prod1.getDetails()); // Expected output: "Product: Laptop, ID: 101, Price: $1200, Stock: 5 
+
+// Task 3 Creating an Inventory Class 
+
+class Inventory { // Create inventory class
+    constructor() {
+        this.products = []
+    };
+    addProduct(products) { // Method to add new product to array
+        this.products.push(products)
+    };
+    listProducts() { // Method to log all product details
+        this.products.forEach(product => {
+            console.log(product.getDetails()) 
+            
+        });
+    }
+}
+
+const inventory = new Inventory();
+inventory.addProduct(prod1); // Add product to inventory 
+inventory.listProducts(); // Expected output: Product: Laptop, ID: 101, Price: $1200, Stock: 5
 
