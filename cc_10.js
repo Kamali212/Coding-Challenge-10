@@ -53,28 +53,40 @@ class Inventory { // Create inventory class
         this.products.forEach(product => {
             console.log(product.getDetails())    
         });
-    }
+    };
+    // Task 4 Order Management
     listOrders() { // Method list order details
         this.orders.forEach(order => {
             console.log(order.getOrderDetails());
         });
-    }
+    };
+    // Task 4 Order Management 
     placeOrder(orderID, product, quantity) { // Create a new order and adds to orders if there is enough stock
         if (product.stock >= quantity) {
             const newOrder = new Order(orderID, product, quantity);
             this.orders.push(newOrder)
-        }
-    }
+        };
+    };
+
+    // Task 5 Product Restocking 
+    restockProduct(productID, quantity) { // Method to restock product
+        const product = this.products.find(product => productID === productID); // Find Product through Product ID
+        if (product) { 
+            product.stock += quantity; // Increase product quantity if found 
+        };
+    };
 }
 
 const inventory = new Inventory();
 inventory.addProduct(prod1); // Add product to inventory 
 inventory.listProducts(); // Expected output: Product: Laptop, ID: 101, Price: $1200, Stock: 5
 
-// Task 4 Implementing Order Management 
-inventory.placeOrder(601, prod1, 2);
+inventory.placeOrder(601, prod1, 2); // Place order
 inventory.listOrders(); // Expected output: Order ID: 601, Product: Laptop, Quantity: 2, Total Price: $2400
 console.log(prod1.getDetails()); // Expected output: "Product: Laptop, ID: 101, Price: $1200, Stock: 3
+
+inventory.restockProduct(101, 5); // Restock Product 
+console.log(prod1.getDetails()); // Expected output: Product: Laptop, ID: 101, Price: $1200, Stock: 8
 
 
 
